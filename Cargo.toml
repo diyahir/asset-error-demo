@@ -1,0 +1,16 @@
+[package]
+name = "asset-error-demo"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dev-dependencies]
+fuels = { version = "0.48.0", features = ["fuel-core-lib"] }
+tokio = { version = "1.12", features = ["rt", "macros"] }
+# Not the latest version because of indexer bug o.o 
+
+[[test]]
+harness = true
+name = "tests"
+path = "tests/harness.rs"
