@@ -33,7 +33,7 @@ abi MyContract {
 
 storage {
     asset_contract_id: ContractId = ContractId::from(ZERO_B256),
-    asset_id: AssetId = AssetId::from(ZERO_B256),
+    asset_id: AssetId = ZERO_B256,
 }
 
 impl MyContract for Contract {
@@ -61,5 +61,5 @@ impl MyContract for Contract {
 }
 
 pub fn get_default_asset_id(temp_contract: ContractId) -> AssetId {
-    AssetId::from(sha256((temp_contract, ZERO_B256)))
+    sha256((temp_contract, ZERO_B256))
 }
