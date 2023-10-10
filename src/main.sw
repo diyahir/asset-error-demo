@@ -10,7 +10,6 @@ use std::{
     },
     contract_id::ContractId,
     hash::*,
-    hash::Hash,
     revert::require,
     storage::*,
     token::*,
@@ -19,7 +18,6 @@ use std::{
 const ZERO_B256 = 0x0000000000000000000000000000000000000000000000000000000000000000;
 
 abi MyContract {
-
     #[storage(write)]
     fn set_recievable(asset_id: ContractId);
 
@@ -39,7 +37,7 @@ storage {
 }
 
 impl MyContract for Contract {
-     #[storage(write)]
+    #[storage(write)]
     fn set_recievable(asset_contract: ContractId) {
         storage.asset_contract_id.write(asset_contract);
         storage.asset_id.write(get_default_asset_id(asset_contract));
@@ -49,14 +47,14 @@ impl MyContract for Contract {
     fn mint_to_id(amount: u64, address: Identity) {
         mint_to(address, ZERO_B256, amount);
     }
-    
+
     #[storage(read), payable]
     fn on_recieve() -> bool {
         require(msg_asset_id() == storage.asset_id.read(), "Asset ID must be correct");
         true
     }
 
-    #[storage(read,write)]
+    #[storage(read, write)]
     fn set_asset_id(asset_id: AssetId) {
         storage.asset_id.write(asset_id);
     }

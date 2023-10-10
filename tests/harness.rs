@@ -25,6 +25,7 @@ async fn proper_initialization() {
         .contract_id()
         .asset_id(&BASE_ASSET_ID.into())
         .into();
+
     println!("asset_id: {:?}", asset_id);
 
     on_recieve(&test_token_a, amount, asset_id).await;
